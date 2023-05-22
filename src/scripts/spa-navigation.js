@@ -24,10 +24,12 @@ navigation.addEventListener('navigate', (navigateEvent) => {
   const fromPath = location.pathname
   const navigationType = getNavigationType(fromPath, toPath)
 
+
+
   if (location.origin !== toUrl.origin) return
 
   switch (navigationType) {
-    case 'home-to-movie':
+    case 'home-to-movie': 
     case 'tv-to-show':
       handleHomeToMovieTransition(navigateEvent, getPathId(toPath))
       break
@@ -57,6 +59,7 @@ navigation.addEventListener('navigate', (navigateEvent) => {
 
 // TODO: https://developer.chrome.com/docs/web-platform/view-transitions/#transitions-as-an-enhancement
 function handleHomeToMovieTransition(navigateEvent, movieId) {
+  console.log(handleHomeToMovieTransition)
   navigateEvent.intercept({
     async handler() {
       const fragmentUrl = useTvFragment(navigateEvent)
@@ -89,6 +92,7 @@ function handleHomeToMovieTransition(navigateEvent, movieId) {
 }
 
 function handleMovieToHomeTransition(navigateEvent, movieId) {
+  console.log("handleMovieToHomeTransition")
   navigateEvent.intercept({
     scroll: 'manual',
     async handler() {
