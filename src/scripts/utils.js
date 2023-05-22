@@ -29,6 +29,37 @@ export function getNavigationType(fromPath, toPath) {
     return 'person-to-movie'
   }
 
+  if (fromPath.startsWith('/transition/movies') && toPath === '/transition') {
+    return 'movie-to-home'
+  }
+
+  if (fromPath === '/transition/tv' && toPath.startsWith('/transition/tv/')) {
+    return 'tv-to-show'
+  }
+
+  if (fromPath === '/transition' && toPath.startsWith('/transition/movies')) {
+    return 'home-to-movie'
+  }
+
+  if (fromPath.startsWith('/transition/tv/') && toPath === '/transition/tv') {
+    return 'show-to-tv'
+  }
+
+  if (
+    (fromPath.startsWith('/transition/movies') || fromPath.startsWith('/transition/tv')) &&
+    toPath.startsWith('/transition/people')
+  ) {
+    return 'movie-to-person'
+  }
+
+  if (
+    fromPath.startsWith('/transition/people') &&
+    (toPath.startsWith('/transition/movies') || toPath.startsWith('/transition/tv/'))
+  ) {
+    return 'person-to-movie'
+  }
+
+
   return 'other'
 }
 
